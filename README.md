@@ -11,7 +11,7 @@ Whilst it is an open source project and absolutely for the community, I am very 
 If you don't want to get involved in development but want to drive the future of the project please take a look at the feature stories [here](https://github.com/ngxtend/fire-testing/issues) and add your own or get involved in the discussions.
 
 
-If you are interested in contributing as a developer please contact me directly and we can have a discussion.  Before you do you should read the [Contributing Guide](https://github.com/ngxtend/fire-testing/wiki/Contributing) consider whether you would be prepared to:
+If you are interested in contributing as a developer please contact me directly and we can have a discussion.  Before you do you should read the [Contributing Guide](https://ngxtend.github.com/fire-testing/contributing) consider whether you would be prepared to:
 
 * Practice TDD, not just write tests after the fact, but properly apply TDD rules as originally defined by Kent Beck.  Writing a test that justifies the existence of implementation code before you create the implementation
 * Strictly adhere to the coding standards and guidelines as enforced through linting
@@ -59,3 +59,6 @@ describe('AuthService', () => {
 ```
 
 In this example AuthService depends on the user$ property of the AngularFireAuth service and exposes it as currentUser$.  I want to know that if the user state is updated by Firebase (e.g. when the user signs out) that my AuthService is going to propogate that state change up to any subscribers in the app.  My test has very few lines of code, I don't want to bloat it with setting up a spy, I want my testing library to take care of that and let me simply and easily provide the fake with the user state to be emitted with something like the *emitUserUpdate* method. This is what I propose this library should enable and support.
+
+### Demo and Documentation App
+The Angular app within this repo is published as the GitHub Pages site for this repo and acts as both a demo and documentation for using the libary you can find [here](https://ngxtend.github.io/fire-testing/)
