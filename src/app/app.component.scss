@@ -1,3 +1,15 @@
 .toolbar-spacer {
   flex: 1 1 auto;
 }
+
+.mat-sidenav-container {
+  height: calc(100% - 64px);
+
+  .mat-sidenav-content {
+    padding: 1.5em;
+  }
+}
+
+.active-link {
+  font-weight: bold;
+}

@@ -1,16 +1,23 @@
-<mat-toolbar-row>
+<mat-toolbar color="primary">
   <span>Angular Fire Testing</span>
   <span class="toolbar-spacer"></span>
   <a mat-icon-button href="https://github.com/ngxtend/fire-testing">
-    <mat-icon
-      fontSet="fa"
+    <mat-icon class="fa-2x"
+      fontSet="fab"
       fontIcon="fa-github"
       aria-hidden="false"
       aria-label="Code on github"
     ></mat-icon>
   </a>
-</mat-toolbar-row>
+</mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav>Start</mat-sidenav>
-  <mat-sidenav-content>Main</mat-sidenav-content>
+  <mat-sidenav mode="side" opened="true">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home" routerLinkActive="active-link"><mat-icon>home</mat-icon> Home</a>
+    </mat-nav-list>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/contributing" routerLinkActive="active-link"><mat-icon fontSet="fas" fontIcon="fa-code-branch"></mat-icon> Contributing</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
 </mat-sidenav-container>
