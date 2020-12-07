@@ -17226,6 +17226,401 @@ function dispatchBufferClose(arg) {
 
 /***/ }),
 
+/***/ "OtPg":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/ngx-highlightjs/__ivy_ngcc__/fesm2015/ngx-highlightjs.js ***!
+  \*******************************************************************************/
+/*! exports provided: HIGHLIGHT_OPTIONS, Highlight, HighlightJS, HighlightLoader, HighlightModule, ɵ0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HIGHLIGHT_OPTIONS", function() { return HIGHLIGHT_OPTIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Highlight", function() { return Highlight; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HighlightJS", function() { return HighlightJS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HighlightLoader", function() { return HighlightLoader; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HighlightModule", function() { return HighlightModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵ0", function() { return ɵ0; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "jhN1");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "ofXK");
+
+
+
+
+
+
+
+
+const HIGHLIGHT_OPTIONS = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('HIGHLIGHT_OPTIONS');
+
+// @dynamic
+class HighlightLoader {
+    constructor(doc, platformId, _options) {
+        this._options = _options;
+        // Stream that emits when hljs library is loaded and ready to use
+        this._ready = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](null);
+        this.ready = this._ready.asObservable().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["filter"])((hljs) => !!hljs), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((hljs) => hljs), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["take"])(1));
+        // Check if hljs is already available
+        if (Object(_angular_common__WEBPACK_IMPORTED_MODULE_4__["isPlatformBrowser"])(platformId) && doc.defaultView.hljs) {
+            this._ready.next(doc.defaultView.hljs);
+        }
+        else {
+            // Load hljs library
+            this._loadLibrary().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])((hljs) => {
+                if (this._options && this._options.lineNumbersLoader) {
+                    // Make hljs available on window object (required for the line numbers library)
+                    doc.defaultView.hljs = hljs;
+                    // Load line numbers library
+                    return this.loadLineNumbers().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(() => this._ready.next(hljs)));
+                }
+                else {
+                    this._ready.next(hljs);
+                    return rxjs__WEBPACK_IMPORTED_MODULE_2__["EMPTY"];
+                }
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((e) => {
+                console.error('[HLJS] ', e);
+                return rxjs__WEBPACK_IMPORTED_MODULE_2__["EMPTY"];
+            })).subscribe();
+        }
+    }
+    /**
+     * Lazy-Load highlight.js library
+     */
+    _loadLibrary() {
+        if (this._options) {
+            if (this._options.fullLibraryLoader && this._options.coreLibraryLoader) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])('The full library and the core library were imported, only one of them should be imported!');
+            }
+            if (this._options.fullLibraryLoader && this._options.languages) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])('The highlighting languages were imported they are not needed!');
+            }
+            if (this._options.coreLibraryLoader && !this._options.languages) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])('The highlighting languages were not imported!');
+            }
+            if (!this._options.coreLibraryLoader && this._options.languages) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])('The core library was not imported!');
+            }
+            if (this._options.fullLibraryLoader) {
+                return this.loadFullLibrary();
+            }
+            if (this._options.coreLibraryLoader && this._options.languages && Object.keys(this._options.languages).length) {
+                return this.loadCoreLibrary().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])((hljs) => this._loadLanguages(hljs)));
+            }
+        }
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])('Highlight.js library was not imported!');
+    }
+    /**
+     * Lazy-load highlight.js languages
+     */
+    _loadLanguages(hljs) {
+        const languages = Object.entries(this._options.languages).map(([langName, langLoader]) => importModule(langLoader()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])((langFunc) => hljs.registerLanguage(langName, langFunc))));
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["zip"])(...languages).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(() => hljs));
+    }
+    /**
+     * Import highlight.js core library
+     */
+    loadCoreLibrary() {
+        return importModule(this._options.coreLibraryLoader());
+    }
+    /**
+     * Import highlight.js library with all languages
+     */
+    loadFullLibrary() {
+        return importModule(this._options.fullLibraryLoader());
+    }
+    /**
+     * Import line numbers library
+     */
+    loadLineNumbers() {
+        return importModule(this._options.lineNumbersLoader());
+    }
+}
+HighlightLoader.ɵfac = function HighlightLoader_Factory(t) { return new (t || HighlightLoader)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_4__["DOCUMENT"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HIGHLIGHT_OPTIONS, 8)); };
+HighlightLoader.ɵprov = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"])({ factory: function HighlightLoader_Factory() { return new HighlightLoader(Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"])(_angular_common__WEBPACK_IMPORTED_MODULE_4__["DOCUMENT"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"])(_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"])(HIGHLIGHT_OPTIONS, 8)); }, token: HighlightLoader, providedIn: "root" });
+HighlightLoader.ctorParameters = () => [
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [_angular_common__WEBPACK_IMPORTED_MODULE_4__["DOCUMENT"],] }] },
+    { type: Object, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"],] }] },
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Optional"] }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [HIGHLIGHT_OPTIONS,] }] }
+];
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HighlightLoader, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root'
+            }]
+    }], function () { return [{ type: undefined, decorators: [{
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+                args: [_angular_common__WEBPACK_IMPORTED_MODULE_4__["DOCUMENT"]]
+            }] }, { type: Object, decorators: [{
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+                args: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]]
+            }] }, { type: undefined, decorators: [{
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Optional"]
+            }, {
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+                args: [HIGHLIGHT_OPTIONS]
+            }] }]; }, null); })();
+/**
+ * Map loader response to module object
+ */
+const importModule = (moduleLoader) => {
+    return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(moduleLoader).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["filter"])((module) => !!module && !!module.default), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((module) => module.default));
+};
+const ɵ0 = importModule;
+
+class HighlightJS {
+    constructor(_loader, options) {
+        this._loader = _loader;
+        this._hljs = null;
+        // Load highlight.js library on init
+        _loader.ready.pipe().subscribe((hljs) => {
+            this._hljs = hljs;
+            if (options && options.config) {
+                // Set global config if present
+                hljs.configure(options.config);
+                if (hljs.listLanguages().length < 1) {
+                    console.error('[HighlightJS]: No languages were registered!');
+                }
+            }
+        });
+    }
+    // A reference for hljs library
+    get hljs() {
+        return this._hljs;
+    }
+    /**
+     * Core highlighting function.
+     * @param name Accepts a language name, or an alias
+     * @param value A string with the code to highlight.
+     * @param ignore_illegals When present and evaluates to a true value, forces highlighting to finish
+     * even in case of detecting illegal syntax for the language instead of throwing an exception.
+     * @param continuation An optional mode stack representing unfinished parsing.
+     * When present, the function will restart parsing from this state instead of initializing a new one
+     */
+    highlight(name, value, ignore_illegals, continuation) {
+        return this._loader.ready.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((hljs) => hljs.highlight(name, value, ignore_illegals, continuation)));
+    }
+    /**
+     * Highlighting with language detection.
+     * @param value Accepts a string with the code to highlight
+     * @param languageSubset An optional array of language names and aliases restricting detection to only those languages.
+     * The subset can also be set with configure, but the local parameter overrides the option if set.
+     */
+    highlightAuto(value, languageSubset) {
+        return this._loader.ready.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((hljs) => hljs.highlightAuto(value, languageSubset)));
+    }
+    /**
+     * Post-processing of the highlighted markup.
+     * Currently consists of replacing indentation TAB characters and using <br> tags instead of new-line characters.
+     * Options are set globally with configure.
+     * @param value Accepts a string with the highlighted markup
+     */
+    fixMarkup(value) {
+        return this._loader.ready.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((hljs) => hljs.fixMarkup(value)));
+    }
+    /**
+     * Applies highlighting to a DOM node containing code.
+     * The function uses language detection by default but you can specify the language in the class attribute of the DOM node.
+     * See the class reference for all available language names and aliases.
+     * @param block The element to apply highlight on.
+     */
+    highlightBlock(block) {
+        return this._loader.ready.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((hljs) => hljs.highlightBlock(block)));
+    }
+    /**
+     * Configures global options:
+     * @param config HighlightJs configuration argument
+     */
+    configure(config) {
+        return this._loader.ready.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((hljs) => hljs.configure(config)));
+    }
+    /**
+     * Applies highlighting to all <pre><code>..</code></pre> blocks on a page.
+     */
+    initHighlighting() {
+        return this._loader.ready.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((hljs) => hljs.initHighlighting()));
+    }
+    /**
+     * Adds new language to the library under the specified name. Used mostly internally.
+     * @param name A string with the name of the language being registered
+     * @param language A function that returns an object which represents the language definition.
+     * The function is passed the hljs object to be able to use common regular expressions defined within it.
+     */
+    registerLanguage(name, language) {
+        return this._loader.ready.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])((hljs) => hljs.registerLanguage(name, language)));
+    }
+    /**
+     * @return The languages names list.
+     */
+    listLanguages() {
+        return this._loader.ready.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((hljs) => hljs.listLanguages()));
+    }
+    /**
+     * Looks up a language by name or alias.
+     * @param name Language name
+     * @return The language object if found, undefined otherwise.
+     */
+    getLanguage(name) {
+        return this._loader.ready.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((hljs) => hljs.getLanguage(name)));
+    }
+    /**
+     * Display line numbers
+     * @param el Code element
+     */
+    lineNumbersBlock(el) {
+        return this._loader.ready.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["filter"])((hljs) => !!hljs.lineNumbersBlock), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])((hljs) => hljs.lineNumbersBlock(el)));
+    }
+}
+HighlightJS.ɵfac = function HighlightJS_Factory(t) { return new (t || HighlightJS)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HighlightLoader), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HIGHLIGHT_OPTIONS, 8)); };
+HighlightJS.ɵprov = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"])({ factory: function HighlightJS_Factory() { return new HighlightJS(Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"])(HighlightLoader), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"])(HIGHLIGHT_OPTIONS, 8)); }, token: HighlightJS, providedIn: "root" });
+HighlightJS.ctorParameters = () => [
+    { type: HighlightLoader },
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Optional"] }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [HIGHLIGHT_OPTIONS,] }] }
+];
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HighlightJS, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root'
+            }]
+    }], function () { return [{ type: HighlightLoader }, { type: undefined, decorators: [{
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Optional"]
+            }, {
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+                args: [HIGHLIGHT_OPTIONS]
+            }] }]; }, null); })();
+
+class Highlight {
+    constructor(el, _hljs, _sanitizer, _options) {
+        this._hljs = _hljs;
+        this._sanitizer = _sanitizer;
+        this._options = _options;
+        // Stream that emits when code string is highlighted
+        this.highlighted = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this._nativeElement = el.nativeElement;
+    }
+    ngOnChanges(changes) {
+        if (this.code &&
+            changes.code &&
+            typeof changes.code.currentValue !== 'undefined' &&
+            changes.code.currentValue !== changes.code.previousValue) {
+            this.highlightElement(this.code, this.languages);
+        }
+    }
+    /**
+     * Highlighting with language detection and fix markup.
+     * @param code Accepts a string with the code to highlight
+     * @param languages An optional array of language names and aliases restricting detection to only those languages.
+     * The subset can also be set with configure, but the local parameter overrides the option if set.
+     */
+    highlightElement(code, languages) {
+        // Set code text before highlighting
+        this.setTextContent(code);
+        this._hljs.highlightAuto(code, languages).subscribe((res) => {
+            // Set highlighted code
+            this.setInnerHTML(res.value);
+            // Check if user want to show line numbers
+            if (this.lineNumbers && this._options && this._options.lineNumbersLoader) {
+                this.addLineNumbers();
+            }
+            // Forward highlight response to the highlighted output
+            this.highlighted.emit(res);
+        });
+    }
+    addLineNumbers() {
+        // Clean up line numbers observer
+        this.destroyLineNumbersObserver();
+        rxjs__WEBPACK_IMPORTED_MODULE_2__["animationFrameScheduler"].schedule(() => {
+            // Add line numbers
+            this._hljs.lineNumbersBlock(this._nativeElement).subscribe();
+            // If lines count is 1, the line numbers library will not add numbers
+            // Observe changes to add 'hljs-line-numbers' class only when line numbers is added to the code element
+            this._lineNumbersObs = new MutationObserver(() => {
+                if (this._nativeElement.firstElementChild && this._nativeElement.firstElementChild.tagName.toUpperCase() === 'TABLE') {
+                    this._nativeElement.classList.add('hljs-line-numbers');
+                }
+                this.destroyLineNumbersObserver();
+            });
+            this._lineNumbersObs.observe(this._nativeElement, { childList: true });
+        });
+    }
+    destroyLineNumbersObserver() {
+        if (this._lineNumbersObs) {
+            this._lineNumbersObs.disconnect();
+            this._lineNumbersObs = null;
+        }
+    }
+    setTextContent(content) {
+        rxjs__WEBPACK_IMPORTED_MODULE_2__["animationFrameScheduler"].schedule(() => this._nativeElement.textContent = content);
+    }
+    setInnerHTML(content) {
+        rxjs__WEBPACK_IMPORTED_MODULE_2__["animationFrameScheduler"].schedule(() => this._nativeElement.innerHTML = this._sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_0__["SecurityContext"].HTML, content) || '');
+    }
+}
+Highlight.ɵfac = function Highlight_Factory(t) { return new (t || Highlight)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](HighlightJS), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](HIGHLIGHT_OPTIONS, 8)); };
+Highlight.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: Highlight, selectors: [["", "highlight", ""]], hostVars: 2, hostBindings: function Highlight_HostBindings(rf, ctx) { if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("hljs", true);
+    } }, inputs: { code: ["highlight", "code"], languages: "languages", lineNumbers: "lineNumbers" }, outputs: { highlighted: "highlighted" }, features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]] });
+Highlight.ctorParameters = () => [
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] },
+    { type: HighlightJS },
+    { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"] },
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Optional"] }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [HIGHLIGHT_OPTIONS,] }] }
+];
+Highlight.propDecorators = {
+    code: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"], args: ['highlight',] }],
+    languages: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"] }],
+    lineNumbers: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"] }],
+    highlighted: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"] }]
+};
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](Highlight, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
+        args: [{
+                host: {
+                    '[class.hljs]': 'true'
+                },
+                selector: '[highlight]'
+            }]
+    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] }, { type: HighlightJS }, { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["DomSanitizer"] }, { type: undefined, decorators: [{
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Optional"]
+            }, {
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
+                args: [HIGHLIGHT_OPTIONS]
+            }] }]; }, { highlighted: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"]
+        }], code: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
+            args: ['highlight']
+        }], languages: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
+        }], lineNumbers: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
+        }] }); })();
+
+class HighlightModule {
+}
+HighlightModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: HighlightModule });
+HighlightModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function HighlightModule_Factory(t) { return new (t || HighlightModule)(); } });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](HighlightModule, { declarations: [Highlight], exports: [Highlight] }); })();
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HighlightModule, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
+        args: [{
+                declarations: [Highlight],
+                exports: [Highlight]
+            }]
+    }], null, null); })();
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+
+
+//# sourceMappingURL=ngx-highlightjs.js.map
+
+/***/ }),
+
 /***/ "PZkE":
 /*!**********************************************************************************!*\
   !*** ./node_modules/rxjs/_esm2015/internal/operators/distinctUntilKeyChanged.js ***!

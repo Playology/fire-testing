@@ -83,35 +83,7 @@
   form of documentation for fellow developers. Something like this:
 </p>
 
-<pre>
-import {{ "{" }} provideAngularFireAuthMock {{
-    "}"
-  }} from '@ngxtend/fire-testing';
-
-describe('AuthService', () => {{ "{" }}
-    let service: AuthService;
-    let afa: AngularFireAuth;
-    beforeEach(() => {{ "{" }}
-        TestBed.configureTestingModule({{ "{" }}
-            imports: [AngularFireTestingModule],
-            providers: [AuthService]
-            {{ "}" }});
-            service = TestBed.inject(AuthService);
-            afa = TestBed.inject(AngularFireAuth);
-            {{ "}" }});
-
-    it('provides state of current user', () => {{ "{" }}
-        let actual: any;
-        const expected = {{ "{" }} uuid: '12345'{{ "}" }};
-
-        service.currentUser$.subscribe(n => actual = n);
-
-        afa.emitUserUpdate(expected);
-
-        expect(actual).toEqual(expected);
-        {{ "}" }});
-        {{ "}" }});
-</pre>
+<pre><code [highlight]="code"></code></pre>
 <p>
   In this example AuthService depends on the user$ property of the
   AngularFireAuth service and exposes it as currentUser$. I want to know that if

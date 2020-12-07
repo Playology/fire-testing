@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "ftdemo",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -30,9 +30,13 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "./node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "./node_modules/highlight.js/styles/default.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "highlight.js"
+            ]
           },
           "configurations": {
             "production": {

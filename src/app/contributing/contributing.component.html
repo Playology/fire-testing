@@ -143,8 +143,32 @@
   added to the demo app and a new item in the side menu, linking to an
   appropriate route.
 </p>
-<p>We do not expect tests to be written for documentation pages. To create a documentation component use the following Angular CLI command command:</p>
+<p>
+  We do not expect tests to be written for documentation pages. To create a
+  documentation component use the following Angular CLI command command:
+</p>
 <pre>ng g c [name] --skipTests=true</pre>
-<p>When pushing code to the repo it is important to understand and remember that the documentation site is automatically published from the <em>/docs</em> folder so before pushing you <em>must remember to run the build script</em> using the following command</p>
+<p>
+  When pushing code to the repo it is important to understand and remember that
+  the documentation site is automatically published from the
+  <em>/docs</em> folder so before pushing you
+  <em>must remember to run the build script</em> using the following command
+</p>
 <pre>npm run build</pre>
-<p>This script not only builds the Angular app into the docs folder, it uses the <em>base-href</em> command line argument to set the correct base href value in index.html required for the Angular app to run in GitHub pages.</p>
+<p>
+  This script not only builds the Angular app into the docs folder, it uses the
+  <em>base-href</em> command line argument to set the correct base href value in
+  index.html required for the Angular app to run in GitHub pages.
+</p>
+<h3>Code Examples</h3>
+<p>
+  In documentation and examples you will want to include TypeScript code. To
+  support formatting and syntax highlighting the app imports the
+  <em>ngx-highlightjs</em> module. This module includes a
+  <em>code</em> directive that you can use along with template strings in
+  component classes to display code formatted and colour coded.  The following uses the HTML module
+  of this component to format the example usage taken from <em>home.component.html</em>
+</p>
+<pre><code [highlight]="html"></code></pre>
+<p>In this example the <em>code </em> property of the component is defined as a template string like this</p>
+<pre><code [highlight]="code"></code></pre>

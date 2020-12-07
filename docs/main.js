@@ -23,15 +23,43 @@ module.exports = __webpack_require__(/*! C:\_ngxtend\fire-testing\src\main.ts */
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContributingComponent", function() { return ContributingComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var ngx_highlightjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ngx-highlightjs */ "OtPg");
+
 
 
 class ContributingComponent {
-    constructor() { }
-    ngOnInit() {
+    constructor() {
+        this.html = `<pre><code [highlight]="code"></code></pre>`;
+        this.code = `public code = \`
+  import { provideAngularFireAuthMock } from '@ngxtend/fire-testing';
+
+  describe('AuthService', () => {
+    let service: AuthService;
+    let afa: AngularFireAuth;
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [AngularFireTestingModule],
+        providers: [AuthService]
+      });
+      service = TestBed.inject(AuthService);
+      afa = TestBed.inject(AngularFireAuth);
+    });
+
+    it('provides state of current user', () => {
+      let actual: any;
+      const expected = { uuid: '12345' };
+
+      service.currentUser$.subscribe(n => actual = n);
+
+      afa.emitUserUpdate(expected);
+
+      expect(actual).toEqual(expected);
+    });
+  });\``;
     }
 }
 ContributingComponent.ɵfac = function ContributingComponent_Factory(t) { return new (t || ContributingComponent)(); };
-ContributingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ContributingComponent, selectors: [["ftdemo-contributing"]], decls: 104, vars: 0, template: function ContributingComponent_Template(rf, ctx) { if (rf & 1) {
+ContributingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ContributingComponent, selectors: [["app-contributing"]], decls: 125, vars: 2, consts: [[3, "highlight"]], template: function ContributingComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h1");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "Contributing Guide");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -154,13 +182,13 @@ ContributingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](84, " When submitting a PR for changes to existing code we will expect to see the HTML of the relevant component updated. When submitting a PR for a new feature we will expect to see a new Angular component that full documents the feature added to the demo app and a new item in the side menu, linking to an appropriate route.\n");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](85, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](86, "We do not expect tests to be written for documentation pages. To create a documentation component use the following Angular CLI command command:");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](86, " We do not expect tests to be written for documentation pages. To create a documentation component use the following Angular CLI command command:\n");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](87, "pre");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](88, "ng g c [name] --skipTests=true");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](89, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](90, "When pushing code to the repo it is important to understand and remember that the documentation site is automatically published from the ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](90, " When pushing code to the repo it is important to understand and remember that the documentation site is automatically published from the ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](91, "em");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](92, "/docs");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -168,27 +196,62 @@ ContributingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](94, "em");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](95, "must remember to run the build script");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](96, " using the following command");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](96, " using the following command\n");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](97, "pre");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](98, "npm run build");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](99, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](100, "This script not only builds the Angular app into the docs folder, it uses the ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](100, " This script not only builds the Angular app into the docs folder, it uses the ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](101, "em");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](102, "base-href");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](103, " command line argument to set the correct base href value in index.html required for the Angular app to run in GitHub pages.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](103, " command line argument to set the correct base href value in index.html required for the Angular app to run in GitHub pages.\n");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    } }, styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjb250cmlidXRpbmcuY29tcG9uZW50LnNjc3MifQ== */"] });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](104, "h3");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](105, "Code Examples");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](106, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](107, " In documentation and examples you will want to include TypeScript code. To support formatting and syntax highlighting the app imports the ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](108, "em");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](109, "ngx-highlightjs");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](110, " module. This module includes a ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](111, "em");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](112, "code");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](113, " directive that you can use along with template strings in component classes to display code formatted and colour coded. The following uses the HTML module of this component to format the example usage taken from ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](114, "em");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](115, "home.component.html");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](116, "pre");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](117, "code", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](118, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](119, "In this example the ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](120, "em");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](121, "code ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](122, " property of the component is defined as a template string like this");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](123, "pre");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](124, "code", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](117);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("highlight", ctx.html);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("highlight", ctx.code);
+    } }, directives: [ngx_highlightjs__WEBPACK_IMPORTED_MODULE_1__["Highlight"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjb250cmlidXRpbmcuY29tcG9uZW50LnNjc3MifQ== */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ContributingComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
-                selector: 'ftdemo-contributing',
+                selector: 'app-contributing',
                 templateUrl: './contributing.component.html',
                 styleUrls: ['./contributing.component.scss']
             }]
-    }], function () { return []; }, null); })();
+    }], null, null); })();
 
 
 /***/ }),
@@ -204,15 +267,42 @@ ContributingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var ngx_highlightjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ngx-highlightjs */ "OtPg");
+
 
 
 class HomeComponent {
-    constructor() { }
-    ngOnInit() {
+    constructor() {
+        this.code = `
+  import { provideAngularFireAuthMock } from '@ngxtend/fire-testing';
+
+  describe('AuthService', () => {
+    let service: AuthService;
+    let afa: AngularFireAuth;
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [AngularFireTestingModule],
+        providers: [AuthService]
+      });
+      service = TestBed.inject(AuthService);
+      afa = TestBed.inject(AngularFireAuth);
+    });
+
+    it('provides state of current user', () => {
+      let actual: any;
+      const expected = { uuid: '12345' };
+
+      service.currentUser$.subscribe(n => actual = n);
+
+      afa.emitUserUpdate(expected);
+
+      expect(actual).toEqual(expected);
+    });
+  });`;
     }
 }
 HomeComponent.ɵfac = function HomeComponent_Factory(t) { return new (t || HomeComponent)(); };
-HomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: HomeComponent, selectors: [["ftdemo-home"]], decls: 41, vars: 12, template: function HomeComponent_Template(rf, ctx) { if (rf & 1) {
+HomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: HomeComponent, selectors: [["app-home"]], decls: 41, vars: 1, consts: [[3, "highlight"]], template: function HomeComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h1");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "Angular Fire Testing");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -270,23 +360,23 @@ HomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](36, " This is the case for AngularFire it requires a real Firebase app be initialised in tests to avoid errors. In some cases you can get away with injecting a service without an app and using spies to avoid the errors, but I shouldn't have to use spies in this way. I want to be able to write clean readable code in my tests, code that is expressive and a developer friendly form of documentation for fellow developers. Something like this:\n");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](37, "pre");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](38);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](38, "code", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](39, "p");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](40, " In this example AuthService depends on the user$ property of the AngularFireAuth service and exposes it as currentUser$. I want to know that if the user state is updated by Firebase (e.g. when the user signs out) that my AuthService is going to propogate that state change up to any subscribers in the app. My test has very few lines of code, I don't want to bloat it with setting up a spy, I want my testing library to take care of that and let me simply and easily provide the fake with the user state to be emitted with something like the *emitUserUpdate* method. This is what I propose this library should enable and support.\n");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](38);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolateV"](["import ", "{", " provideAngularFireAuthMock ", "}", " from '@ngxtend/fire-testing';\n\ndescribe('AuthService', () => ", "{", "\n    let service: AuthService;\n    let afa: AngularFireAuth;\n    beforeEach(() => ", "{", "\n        TestBed.configureTestingModule(", "{", "\n            imports: [AngularFireTestingModule],\n            providers: [AuthService]\n            ", "}", ");\n            service = TestBed.inject(AuthService);\n            afa = TestBed.inject(AngularFireAuth);\n            ", "}", ");\n\n    it('provides state of current user', () => ", "{", "\n        let actual: any;\n        const expected = ", "{", " uuid: '12345'", "}", ";\n\n        service.currentUser$.subscribe(n => actual = n);\n\n        afa.emitUserUpdate(expected);\n\n        expect(actual).toEqual(expected);\n        ", "}", ");\n        ", "}", ");\n"]);
-    } }, styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJob21lLmNvbXBvbmVudC5zY3NzIn0= */"] });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("highlight", ctx.code);
+    } }, directives: [ngx_highlightjs__WEBPACK_IMPORTED_MODULE_1__["Highlight"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJob21lLmNvbXBvbmVudC5zY3NzIn0= */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](HomeComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
-                selector: 'ftdemo-home',
+                selector: 'app-home',
                 templateUrl: './home.component.html',
                 styleUrls: ['./home.component.scss']
             }]
-    }], function () { return []; }, null); })();
+    }], null, null); })();
 
 
 /***/ }),
@@ -406,12 +496,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "jhN1");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app-routing.module */ "vY5A");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app.component */ "Sy1n");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser/animations */ "R1ws");
-/* harmony import */ var _material_material_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./material/material.module */ "hctd");
-/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./home/home.component */ "9vUh");
-/* harmony import */ var _contributing_contributing_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./contributing/contributing.component */ "7oI/");
+/* harmony import */ var ngx_highlightjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-highlightjs */ "OtPg");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app-routing.module */ "vY5A");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "Sy1n");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser/animations */ "R1ws");
+/* harmony import */ var _material_material_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./material/material.module */ "hctd");
+/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./home/home.component */ "9vUh");
+/* harmony import */ var _contributing_contributing_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./contributing/contributing.component */ "7oI/");
+
 
 
 
@@ -423,35 +515,58 @@ __webpack_require__.r(__webpack_exports__);
 
 class AppModule {
 }
-AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]] });
-AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [], imports: [[
+AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]] });
+AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [{
+            provide: ngx_highlightjs__WEBPACK_IMPORTED_MODULE_2__["HIGHLIGHT_OPTIONS"],
+            useValue: {
+                coreLibraryLoader: () => __webpack_require__.e(/*! import() | highlight-js-lib-core */ "highlight-js-lib-core").then(__webpack_require__.t.bind(null, /*! highlight.js/lib/core */ "ECCn", 7)),
+                lineNumbersLoader: () => __webpack_require__.e(/*! import() | highlightjs-line-numbers-js */ "highlightjs-line-numbers-js").then(__webpack_require__.t.bind(null, /*! highlightjs-line-numbers.js */ "gPJM", 7)),
+                languages: {
+                    typescript: () => __webpack_require__.e(/*! import() | highlight-js-lib-languages-typescript */ "highlight-js-lib-languages-typescript").then(__webpack_require__.t.bind(null, /*! highlight.js/lib/languages/typescript */ "r0Rl", 7)),
+                    xml: () => __webpack_require__.e(/*! import() | highlight-js-lib-languages-xml */ "highlight-js-lib-languages-xml").then(__webpack_require__.t.bind(null, /*! highlight.js/lib/languages/xml */ "jctj", 7))
+                }
+            }
+        }], imports: [[
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-            _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
-            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"],
-            _material_material_module__WEBPACK_IMPORTED_MODULE_5__["MaterialModule"]
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
+            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"],
+            ngx_highlightjs__WEBPACK_IMPORTED_MODULE_2__["HighlightModule"],
+            _material_material_module__WEBPACK_IMPORTED_MODULE_6__["MaterialModule"]
         ]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
-        _home_home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"],
-        _contributing_contributing_component__WEBPACK_IMPORTED_MODULE_7__["ContributingComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-        _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
-        _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"],
-        _material_material_module__WEBPACK_IMPORTED_MODULE_5__["MaterialModule"]] }); })();
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
+        _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"],
+        _contributing_contributing_component__WEBPACK_IMPORTED_MODULE_8__["ContributingComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+        _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
+        _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"],
+        ngx_highlightjs__WEBPACK_IMPORTED_MODULE_2__["HighlightModule"],
+        _material_material_module__WEBPACK_IMPORTED_MODULE_6__["MaterialModule"]] }); })();
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](AppModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"],
         args: [{
                 declarations: [
-                    _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
-                    _home_home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"],
-                    _contributing_contributing_component__WEBPACK_IMPORTED_MODULE_7__["ContributingComponent"]
+                    _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
+                    _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"],
+                    _contributing_contributing_component__WEBPACK_IMPORTED_MODULE_8__["ContributingComponent"]
                 ],
                 imports: [
                     _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                    _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
-                    _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"],
-                    _material_material_module__WEBPACK_IMPORTED_MODULE_5__["MaterialModule"]
+                    _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
+                    _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"],
+                    ngx_highlightjs__WEBPACK_IMPORTED_MODULE_2__["HighlightModule"],
+                    _material_material_module__WEBPACK_IMPORTED_MODULE_6__["MaterialModule"]
                 ],
-                providers: [],
-                bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
+                providers: [{
+                        provide: ngx_highlightjs__WEBPACK_IMPORTED_MODULE_2__["HIGHLIGHT_OPTIONS"],
+                        useValue: {
+                            coreLibraryLoader: () => __webpack_require__.e(/*! import() | highlight-js-lib-core */ "highlight-js-lib-core").then(__webpack_require__.t.bind(null, /*! highlight.js/lib/core */ "ECCn", 7)),
+                            lineNumbersLoader: () => __webpack_require__.e(/*! import() | highlightjs-line-numbers-js */ "highlightjs-line-numbers-js").then(__webpack_require__.t.bind(null, /*! highlightjs-line-numbers.js */ "gPJM", 7)),
+                            languages: {
+                                typescript: () => __webpack_require__.e(/*! import() | highlight-js-lib-languages-typescript */ "highlight-js-lib-languages-typescript").then(__webpack_require__.t.bind(null, /*! highlight.js/lib/languages/typescript */ "r0Rl", 7)),
+                                xml: () => __webpack_require__.e(/*! import() | highlight-js-lib-languages-xml */ "highlight-js-lib-languages-xml").then(__webpack_require__.t.bind(null, /*! highlight.js/lib/languages/xml */ "jctj", 7))
+                            }
+                        }
+                    }],
+                bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
             }]
     }], null, null); })();
 
