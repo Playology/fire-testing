@@ -31,7 +31,7 @@ class ContributingComponent {
     }
 }
 ContributingComponent.ɵfac = function ContributingComponent_Factory(t) { return new (t || ContributingComponent)(); };
-ContributingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ContributingComponent, selectors: [["ftdemo-contributing"]], decls: 79, vars: 0, template: function ContributingComponent_Template(rf, ctx) { if (rf & 1) {
+ContributingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ContributingComponent, selectors: [["ftdemo-contributing"]], decls: 104, vars: 0, template: function ContributingComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h1");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "Contributing Guide");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -143,6 +143,42 @@ ContributingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](77, "p");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](78, " We expect test coverage to be complete. ALWAYS write a test before anything else and make sure all tests pass before pushing a branch and creating a PR. Any PR that does not sufficiently test even the simplest of changes will be rejected, and as mentioned experienced TDD practitioners can tell whether tests were written before or after the fact so stick to the rules. If you don't want to practice real TDD don't even bother trying to contribute to the project.\n");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](79, "h2");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](80, "Documentation");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](81, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](82, " Documentation is provide via an Angular application that is published as the GitHub Pages site for the repo. This enables documentation to be included and checked as part of the same Pull Request for changes and additions to be merged.\n");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](83, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](84, " When submitting a PR for changes to existing code we will expect to see the HTML of the relevant component updated. When submitting a PR for a new feature we will expect to see a new Angular component that full documents the feature added to the demo app and a new item in the side menu, linking to an appropriate route.\n");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](85, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](86, "We do not expect tests to be written for documentation pages. To create a documentation component use the following Angular CLI command command:");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](87, "pre");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](88, "ng g c [name] --skipTests=true");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](89, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](90, "When pushing code to the repo it is important to understand and remember that the documentation site is automatically published from the ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](91, "em");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](92, "/docs");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](93, " folder so before pushing you ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](94, "em");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](95, "must remember to run the build script");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](96, " using the following command");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](97, "pre");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](98, "npm run build");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](99, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](100, "This script not only builds the Angular app into the docs folder, it uses the ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](101, "em");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](102, "base-href");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](103, " command line argument to set the correct base href value in index.html required for the Angular app to run in GitHub pages.");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } }, styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjb250cmlidXRpbmcuY29tcG9uZW50LnNjc3MifQ== */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ContributingComponent, [{
